@@ -2,7 +2,8 @@
 <link rel="import" href="../core-ajax/core-ajax.html">
 <link rel="import" href="../paper-shadow/paper-shadow.html">
 <link rel="import" href="../google-map/google-map.html">
-
+<link rel="import" href="../core-icons/core-icons.html" >
+<link rel="import" href="../paper-fab/paper-fab.html">
 <!--
 ##### Example
 
@@ -18,11 +19,14 @@
   <template>
     <link rel="stylesheet" href="x-nowcard.css">
  <div class="card">
+ 
+
          <paper-shadow z="2"></paper-shadow>
-     <h3>{{response.name}}</h3>
-     <span class="temp">{{temp}}</span>
+          <paper-fab class="fab" icon="settings-voice"></paper-fab>
+    <h2 class="city">{{response.name}}, {{response.sys.country}}</h2>
+    <span class="temp">{{temp}}</span>
      <img width="75"  src="{{'http://openweathermap.org/img/w/'+ response.weather[0].icon+'.png'}}"/>
-     <p> <b>{{response.weather[0].description}}</b></p>
+     <p> <b>{{response.weather[0].description}}</b><br/> Humidty :{{response.main.humidity}}, pressure :{{response.main.pressure}} </p>
 <google-map latitude="{{response.coord.lat}}" longitude="{{response.coord.lon}}" zoom="11" disableDefaultUI>
    <google-map-marker latitude="{{response.coord.lat}}" longitude="{{response.coord.lon}}" 
       draggable="true" title="Go Giants!"></google-map-marker>
@@ -33,7 +37,7 @@
     <core-ajax
     auto
     url="http://api.openweathermap.org/data/2.5/weather/"
-    params='{"alt":"json", "q":"bangalore"}'
+    params='{"alt":"json", "q":"Bangalore"}'
     handleAs="json"
     on-core-response="{{handleResponse}}"></core-ajax>
   </template>
@@ -76,6 +80,7 @@
       handleResponse : function(e){
         this.response = e.detail.response;
         this.temp = Math.round(this.response.main.temp/10)+'`C';
+
         console.log(e.detail.response);
       }
     });

@@ -55,3 +55,22 @@
     height: 250px;
     padding:5px;
   }
+  
+  .city{
+    color:#3333ff;
+  }
+    
+  .fab{
+    position: absolute;
+top: 215px;
+z-index: 99999;
+right: 8px
+
+}
+
+
+
+
+
+
+  }
