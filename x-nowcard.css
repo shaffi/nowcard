@@ -1,0 +1,57 @@
+:host {
+  display: block;
+}
+
+:host *,
+::content * {
+  font-family: Helvetica, sans-serif;
+  
+}
+
+::content > * {
+  border: 1px solid #aaa;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+ 
+}
+
+::content * {
+  font-size: 16px;
+  padding: 10px;
+
+}
+
+#title {
+  font-size: 20px;
+  margin: 0 0 20px 0;
+}
+
+.card {
+      background: white;
+      width: 300px;
+      position: relative;
+      margin: 16px;
+      border-radius: 2px;
+      padding:5px;
+    }
+
+    .card-inner {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 2px;
+    }
+    
+    .temp{
+      
+      font-weight:bold;
+      font-size:60px;
+    }
+    
+    
+      google-map {
+    display: block;
+    height: 250px;
+    padding:5px;
+  }

@@ -1,0 +1,83 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-ajax/core-ajax.html">
+<link rel="import" href="../paper-shadow/paper-shadow.html">
+<link rel="import" href="../google-map/google-map.html">
+
+<!--
+##### Example
+
+    <x-nowcard></x-nowcard>
+
+@element x-nowcard
+@blurb Element providing solution to [...].
+@status [...]
+@homepage https://.../x-nowcard
+-->
+
+<polymer-element name="x-nowcard" attributes="title">
+  <template>
+    <link rel="stylesheet" href="x-nowcard.css">
+ <div class="card">
+         <paper-shadow z="2"></paper-shadow>
+     <h3>{{response.name}}</h3>
+     <span class="temp">{{temp}}</span>
+     <img width="75"  src="{{'http://openweathermap.org/img/w/'+ response.weather[0].icon+'.png'}}"/>
+     <p> <b>{{response.weather[0].description}}</b></p>
+<google-map latitude="{{response.coord.lat}}" longitude="{{response.coord.lon}}" zoom="11" disableDefaultUI>
+   <google-map-marker latitude="{{response.coord.lat}}" longitude="{{response.coord.lon}}" 
+      draggable="true" title="Go Giants!"></google-map-marker>
+  
+</google-map>
+      </div>
+
+    <core-ajax
+    auto
+    url="http://api.openweathermap.org/data/2.5/weather/"
+    params='{"alt":"json", "q":"bangalore"}'
+    handleAs="json"
+    on-core-response="{{handleResponse}}"></core-ajax>
+  </template>
+
+  <script>
+    Polymer('x-nowcard', {
+      /**
+       * The `noevent` event is not actually fired from here,
+       * we document it as an example of documenting events.
+       *
+       * @event noevent
+       */
+
+      /**
+       * The `attr` attribute does not yet have a purpose.
+       *
+       * @attribute attr
+       * @type string
+       */
+      title: '',
+
+      ready: function() {
+      },
+
+      /**
+       * This function will be invoked every time `attr` gets changed.
+       */
+      attrChanged: function() {
+      },
+
+      /**
+       * The `task` method does [...]
+       *
+       * @method task
+       * @return {Object} Returns [...].
+       * @param {String} dummy Defines [...].
+       */
+      task: function(dummy) {
+      },
+      handleResponse : function(e){
+        this.response = e.detail.response;
+        this.temp = Math.round(this.response.main.temp/10)+'`C';
+        console.log(e.detail.response);
+      }
+    });
+  </script>
+</polymer-element>

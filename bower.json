@@ -1,0 +1,10 @@
+{
+  "name": "nowcard",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#master",
+    "core-ajax": "Polymer/core-ajax",
+        "paper-shadow": "Polymer/paper-shadow",
+    "google-map":"Polymer/google-map"
+  }
+}
