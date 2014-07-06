@@ -4,6 +4,8 @@
 <link rel="import" href="../google-map/google-map.html">
 <link rel="import" href="../core-icons/core-icons.html" >
 <link rel="import" href="../paper-fab/paper-fab.html">
+<link rel="import" href="../speech-mic/speech-mic.html">
+
 <!--
 ##### Example
 
@@ -22,7 +24,11 @@
  
 
          <paper-shadow z="2"></paper-shadow>
-          <paper-fab class="fab" icon="settings-voice"></paper-fab>
+<speech-mic id="speechMic" ></speech-mic>
+          <paper-fab class="fab"icon="arrow-forward" role="button" tabindex="0" on-tap={{searchweather}}>
+                       
+
+          </paper-fab>
     <h2 class="city">{{response.name}}, {{response.sys.country}}</h2>
     <span class="temp">{{temp}}</span>
      <img width="75"  src="{{'http://openweathermap.org/img/w/'+ response.weather[0].icon+'.png'}}"/>
@@ -37,12 +43,13 @@
     <core-ajax
     auto
     url="http://api.openweathermap.org/data/2.5/weather/"
-    params='{"alt":"json", "q":"Bangalore"}'
+    params='{"alt":"json", "q":"{{city}}"}'
     handleAs="json"
     on-core-response="{{handleResponse}}"></core-ajax>
   </template>
 
   <script>
+
     Polymer('x-nowcard', {
       /**
        * The `noevent` event is not actually fired from here,
@@ -58,8 +65,10 @@
        * @type string
        */
       title: '',
+      city :'bangalore',
 
       ready: function() {
+        
       },
 
       /**
@@ -82,7 +91,15 @@
         this.temp = Math.round(this.response.main.temp/10)+'`C';
 
         console.log(e.detail.response);
-      }
+      },
+      searchweather : function(){
+        
+         this.city = this.$.speechMic.transcript;
+      console.log(this.city);
+      },
+      
+      
+      
     });
   </script>
 </polymer-element>

@@ -4,8 +4,10 @@
   "dependencies": {
     "polymer": "Polymer/polymer#master",
     "core-ajax": "Polymer/core-ajax",
-        "paper-shadow": "Polymer/paper-shadow",
+    "paper-shadow": "Polymer/paper-shadow",
     "google-map":"Polymer/google-map",
-    "paper-fab" :"polymer/paper-fab"
+    "paper-fab" :"polymer/paper-fab",
+    "speech-mic": "Polymer/speech-mic#master"
+
   }
 }
